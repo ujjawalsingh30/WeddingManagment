@@ -20,11 +20,11 @@ const Navbar = () => {
 
         {/* DESKTOP NAV LINKS */}
         <div className="hidden lg:flex items-center gap-7 text-sm font-semibold text-gray-700">
-          <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
-          <a href="#how-it-works" className="hover:text-gray-900 transition-colors">How it Works</a>
+          <a href="/" className="hover:text-gray-900 transition-colors">Home</a>
+          <a href="/gallery" className="hover:text-gray-900 transition-colors">Gellary</a>
           <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
           <a href="#testimonials" className="hover:text-gray-900 transition-colors">Testimonials</a>
-          <a href="#blog" className="hover:text-gray-900 transition-colors">Blog</a>
+          <a href="#blog" className="hover:text-gray-900 transition-colors">About</a>
           <a href="#contact" className="hover:text-gray-900 transition-colors">Contact</a>
         </div>
 
@@ -37,7 +37,7 @@ const Navbar = () => {
             Log in
           </Link>
           <a
-            href="#get-started"
+            href="#contact"
             className="px-5 py-2.5 rounded-xl bg-[#af793e] hover:bg-[#9d6b35] text-white text-sm font-semibold transition-all shadow-sm hover:shadow-md cursor-pointer"
           >
             Get Started Free

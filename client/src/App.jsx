@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
+import Gallery from './pages/Gallery'
 import AdminLogin from './admin/common/AdminLogin'
 import AdminLayout from './admin/common/AdminLayout'
 import Dashboard from './admin/pages/Dashboard'
@@ -11,6 +12,10 @@ const App = () => {
       <Routes>
         {/* Public Website Home Route */}
         <Route path="/" element={<Home />} />
+
+        {/* Public Gallery Page */}
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/:id" element={<Gallery />} />
 
         {/* Admin Login Route */}
         <Route path="/admin/login" element={<AdminLogin />} />
