@@ -1,11 +1,33 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
+import AdminLogin from './admin/common/AdminLogin'
+import AdminLayout from './admin/common/AdminLayout'
+import Dashboard from './admin/pages/Dashboard'
 
 const App = () => {
   return (
-    <div>
-     <Home/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Public Website Home Route */}
+        <Route path="/" element={<Home />} />
+
+        {/* Admin Login Route */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Admin Portal Protected / Nested Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="galleries" element={<Dashboard />} />
+          <Route path="customers" element={<Dashboard />} />
+          <Route path="analytics" element={<Dashboard />} />
+        </Route>
+
+        {/* Catch-all Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
