@@ -1,21 +1,39 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Home from './pages/Home'
-import Gallery from './pages/Gallery'
-import AdminLogin from './admin/common/AdminLogin'
-import AdminLayout from './admin/common/AdminLayout'
-import Dashboard from './admin/pages/Dashboard'
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Gallery from "./pages/Gallery";
+import About from "./pages/About";
+import AdminLogin from "./admin/common/AdminLogin";
+import AdminLayout from "./admin/common/AdminLayout";
+import Dashboard from "./admin/pages/Dashboard";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Outlet } from "react-router-dom";
+
+// Wraps public pages with Navbar + Footer
+const PublicLayout = () => {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Public Website Home Route */}
-        <Route path="/" element={<Home />} />
 
-        {/* Public Gallery Page */}
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/gallery/:id" element={<Gallery />} />
+     {/* Public Website Home Route */}
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery/:id" element={<Gallery />} />
+        </Route>
 
         {/* Admin Login Route */}
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -33,7 +51,7 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;

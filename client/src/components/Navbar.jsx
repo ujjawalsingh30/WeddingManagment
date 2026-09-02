@@ -156,8 +156,7 @@ const navLinks = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Testimonials', href: '#testimonials' },
-  { label: 'About', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -180,8 +179,8 @@ const Navbar = () => {
         {/* DESKTOP NAV LINKS */}
         <div className="hidden lg:flex items-center gap-7 text-sm font-semibold text-gray-700">
           {navLinks.map((link) => (
-            
-           <a   key={link.label}
+            <a
+              key={link.label}
               href={link.href}
               className="hover:text-gray-900 transition-colors"
             >
@@ -199,7 +198,8 @@ const Navbar = () => {
             Log in
           </Link>
           
-          <a  href="#contact"
+          <a
+            href="#contact"
             className="px-5 py-2.5 rounded-xl bg-[#af793e] hover:bg-[#9d6b35] text-white text-sm font-semibold transition-all shadow-sm hover:shadow-md cursor-pointer"
           >
             Get Started Free
@@ -232,8 +232,8 @@ const Navbar = () => {
           {/* Nav Links Stack */}
           <div className="flex flex-col space-y-1 text-[17px] font-semibold text-gray-800 py-2">
             {navLinks.map((link) => (
-              
-             <a   key={link.label}
+              <a
+                key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="py-2.5 hover:text-[#af793e] transition-colors"

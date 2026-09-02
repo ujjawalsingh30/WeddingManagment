@@ -21,128 +21,173 @@ const AdminLogin = () => {
   }
 
   return (
-    <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-12 bg-[#faf8f5] relative">
+    <div className="min-h-screen lg:h-screen w-full grid grid-cols-1 lg:grid-cols-12 bg-[#faf8f5] relative overflow-x-hidden lg:overflow-hidden">
       
-      {/* GLOBAL BACK BUTTON (TOP-LEFT) */}
+      {/* GLOBAL BACK BUTTON FOR MOBILE (HIDDEN ON DESKTOP) */}
       <Link
         to="/"
-        className="absolute top-5 left-5 z-30 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/90 backdrop-blur-xs border border-gray-200/90 shadow-xs hover:bg-white text-gray-800 text-xs sm:text-sm font-bold transition-all transform hover:-translate-x-0.5 cursor-pointer"
+        className="lg:hidden absolute top-4 left-4 z-30 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/90 backdrop-blur-xs border border-gray-200/90 shadow-xs hover:bg-white text-gray-800 text-xs font-bold transition-all cursor-pointer"
       >
-        <svg className="w-4 h-4 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="w-3.5 h-3.5 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
         <span>Back to Home</span>
       </Link>
 
       {/* LEFT COLUMN: Hero Dark Studio Showcase (HIDDEN ON PHONE/MOBILE, VISIBLE ON DESKTOP) */}
-      <div className="hidden lg:flex lg:col-span-6 bg-[#0c1017] text-white relative p-8 sm:p-12 lg:p-14 flex-col justify-between overflow-hidden lg:min-h-screen">
+      <div className="hidden lg:flex lg:col-span-6 bg-[#0c1017] text-white relative p-6 lg:p-10 flex-col justify-between overflow-hidden h-full">
         
-        {/* Background Image of Professional DSLR Camera & Laptop Studio with Overlay */}
+        {/* Ambient background glows */}
+        <div className="absolute top-10 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Background Image with Dark Vignette & Gradient Overlays */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1400&auto=format&fit=crop"
             alt="Photography Studio Camera Equipment"
-            className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity"
+            className="w-full h-full object-cover object-center opacity-20 mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1017] via-[#0c1017]/85 to-[#0c1017]/70" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#0c1017]/60 to-[#0c1017]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1017] via-[#0c1017]/90 to-[#0c1017]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1017]/80 via-transparent to-[#0c1017]" />
         </div>
 
-        {/* TOP BRAND HEADER */}
-        <div className="relative z-10 pt-10">
-          <Link to="/" className="inline-flex items-center gap-2.5 group">
-            <img
-              src={logo}
-              alt="PhotoStudio Logo"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-            />
-          </Link>
+        {/* TOP BRAND HEADER & DESKTOP BACK BUTTON */}
+        <div className="relative z-10 pt-2 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="inline-flex items-center gap-2.5 group">
+              <img
+                src={logo}
+                alt="PhotoStudio Logo"
+                className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+              />
+            </Link>
+
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 text-xs font-semibold transition-all shadow-2xs hover:text-white"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              <span>Back to Home</span>
+            </Link>
+          </div>
+
+          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest text-[#d4a373] uppercase shrink-0">
+            ADMIN PORTAL
+          </span>
         </div>
 
         {/* MIDDLE HEADLINE INFO */}
-        <div className="relative z-10 my-auto py-10 space-y-4 max-w-lg">
+        <div className="relative z-10 my-auto py-4 space-y-4 max-w-lg">
           
-          {/* Welcome Badge */}
-          <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#1e2638] border border-gray-700/80 text-[11px] font-bold tracking-widest text-[#d4a373] uppercase shadow-2xs">
-            WELCOME BACK
+          {/* Welcome Pill */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-[11px] font-bold text-[#b78446] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#b78446] animate-pulse" />
+            <span>WELCOME BACK, CREATIVE</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Admin Access
+          <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+            Manage Your Studio <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8cfa0] via-[#b78446] to-[#af793e]">
+              With Confidence
+            </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Sign in to your admin account to manage galleries, customers, and your studio.
+          <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+            Access your control center to manage client galleries, automate photo deliveries, monitor analytics, and deliver unforgettable experiences.
           </p>
 
-          {/* Studio Camera & Dashboard Hero Graphic Accent */}
-          <div className="pt-4 relative">
-            <div className="w-full max-w-md h-48 sm:h-56 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl relative">
-              <img
-                src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop"
-                alt="Studio workflow"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-gray-200">
-                <span className="font-semibold text-white">PhotoStudio Workspace</span>
-                <span className="text-[11px] text-emerald-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Online
+          {/* Studio Workspace Glass Card Preview */}
+          <div className="pt-1 relative">
+            <div className="w-full bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-3 shadow-2xl relative overflow-hidden group">
+              
+              {/* Card Header */}
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  <span className="text-gray-400 font-mono text-[10px] ml-1.5">studio-dashboard.app</span>
+                </div>
+                <span className="text-[10px] font-semibold text-emerald-400 flex items-center gap-1 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  Live Sync
                 </span>
               </div>
+
+              {/* Card Body Image & Badges */}
+              <div className="relative rounded-xl overflow-hidden aspect-16/8 sm:aspect-16/9">
+                <img
+                  src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop"
+                  alt="Studio workflow preview"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c1017] via-transparent to-black/30" />
+
+                {/* Floating Metric Badges */}
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-xs text-white">
+                  <div className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5 text-[11px]">
+                    <svg className="w-3 h-3 text-[#b78446]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                      <circle cx="9" cy="9" r="2" />
+                      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                    </svg>
+                    <span className="font-bold">1,250+ Active Galleries</span>
+                  </div>
+                  <div className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[10px] font-semibold text-amber-300">
+                    ⚡ 99.9% Speed
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
         </div>
 
         {/* BOTTOM 3 FEATURE TILES */}
-        <div className="relative z-10 pt-6 border-t border-gray-800/80 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="relative z-10 pt-2 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           
           {/* 1. Manage Galleries */}
-          <div className="flex items-start gap-3">
-            <div className="text-[#d4a373] mt-0.5">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="bg-white/5 backdrop-blur-xs p-3 rounded-xl border border-white/10 hover:border-[#b78446]/40 transition-colors">
+            <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-[#d4a373] flex items-center justify-center mb-1.5">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
                 <circle cx="9" cy="9" r="2" />
                 <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
             </div>
-            <div>
-              <h4 className="font-bold text-xs sm:text-sm text-white">Manage Galleries</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Organize and deliver photos effortlessly</p>
-            </div>
+            <h4 className="font-bold text-xs text-white">Manage Galleries</h4>
+            <p className="text-[10px] text-gray-400 mt-0.5 leading-snug">Upload &amp; deliver with custom access</p>
           </div>
 
           {/* 2. Manage Customers */}
-          <div className="flex items-start gap-3">
-            <div className="text-[#d4a373] mt-0.5">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="bg-white/5 backdrop-blur-xs p-3 rounded-xl border border-white/10 hover:border-[#b78446]/40 transition-colors">
+            <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-[#d4a373] flex items-center justify-center mb-1.5">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
-            <div>
-              <h4 className="font-bold text-xs sm:text-sm text-white">Manage Customers</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Keep all your clients in one place</p>
-            </div>
+            <h4 className="font-bold text-xs text-white">Client Portal</h4>
+            <p className="text-[10px] text-gray-400 mt-0.5 leading-snug">Track downloads &amp; client access</p>
           </div>
 
           {/* 3. Track Analytics */}
-          <div className="flex items-start gap-3">
-            <div className="text-[#d4a373] mt-0.5">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="bg-white/5 backdrop-blur-xs p-3 rounded-xl border border-white/10 hover:border-[#b78446]/40 transition-colors">
+            <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-[#d4a373] flex items-center justify-center mb-1.5">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="18" x2="18" y1="20" y2="10" />
                 <line x1="12" x2="12" y1="20" y2="4" />
                 <line x1="6" x2="6" y1="20" y2="14" />
               </svg>
             </div>
-            <div>
-              <h4 className="font-bold text-xs sm:text-sm text-white">Track Analytics</h4>
-              <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">Monitor gallery views and downloads</p>
-            </div>
+            <h4 className="font-bold text-xs text-white">Real-Time Analytics</h4>
+            <p className="text-[10px] text-gray-400 mt-0.5 leading-snug">Monitor storage &amp; gallery views</p>
           </div>
 
         </div>
@@ -150,7 +195,7 @@ const AdminLogin = () => {
       </div>
 
       {/* RIGHT COLUMN / PHONE VIEW: Standalone Login Card Container */}
-      <div className="w-full lg:col-span-6 flex items-center justify-center p-4 sm:p-8 lg:p-14 min-h-screen relative pt-20 sm:pt-20 lg:pt-14">
+      <div className="w-full lg:col-span-6 flex items-center justify-center p-4 sm:p-6 lg:p-8 h-full relative overflow-y-auto lg:overflow-hidden pt-16 sm:pt-16 lg:pt-8">
         
         {/* Background decorative dots (Desktop only) */}
         <div className="absolute top-10 right-10 text-gray-300 opacity-60 hidden sm:block pointer-events-none">

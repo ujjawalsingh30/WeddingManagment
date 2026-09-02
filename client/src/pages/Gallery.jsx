@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { logo } from '../assets/assets'
 
 const Gallery = () => {
+  const { id } = useParams()
   const [viewMode, setViewMode] = useState('grid') // 'grid' or 'masonry'
   const [showFilter, setShowFilter] = useState('All Photos')
   const [sortBy, setSortBy] = useState('Newest')
@@ -129,48 +130,72 @@ const Gallery = () => {
         {/* Header Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
 
-          {/* Back to Home */}
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-gray-800 mb-5 transition-colors"
-          >
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            <span>Back</span>
-          </Link>
-
-          {/* Wedding Gallery Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fbf4e8] border border-[#f5e4bf] text-[10px] font-bold tracking-widest text-[#af793e] uppercase shadow-2xs mb-4">
-            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-              <circle cx="12" cy="13" r="3" />
-            </svg>
-            <span>WEDDING GALLERY</span>
+          {/* Back to Home / Back link */}
+          <div className="mb-4">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-gray-800 transition-colors"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              <span>{id ? 'Back to All Galleries' : 'Back to Home'}</span>
+            </Link>
           </div>
 
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight flex items-center gap-3">
-            {galleryInfo.title}
-            <span className="text-[#d4a373] text-2xl sm:text-3xl">♡</span>
-          </h1>
+          {id ? (
+            /* INDIVIDUAL COUPLE GALLERY HEADER */
+            <>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fbf4e8] border border-[#f5e4bf] text-[10px] font-bold tracking-widest text-[#af793e] uppercase shadow-2xs mb-4">
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg>
+                <span>WEDDING GALLERY</span>
+              </div>
 
-          {/* Date & Venue */}
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mt-2.5 font-medium">
-            <svg className="w-3.5 h-3.5 text-[#c8924b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-              <line x1="16" x2="16" y1="2" y2="6" />
-              <line x1="8" x2="8" y1="2" y2="6" />
-              <line x1="3" x2="21" y1="10" y2="10" />
-            </svg>
-            <span>{galleryInfo.date}</span>
-            <span className="text-gray-300">•</span>
-            <svg className="w-3.5 h-3.5 text-[#c8924b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{galleryInfo.venue}</span>
-          </div>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight flex items-center gap-3">
+                {galleryInfo.title}
+                <span className="text-[#d4a373] text-2xl sm:text-3xl">♡</span>
+              </h1>
+
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mt-2.5 font-medium">
+                <svg className="w-3.5 h-3.5 text-[#c8924b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                  <line x1="16" x2="16" y1="2" y2="6" />
+                  <line x1="8" x2="8" y1="2" y2="6" />
+                  <line x1="3" x2="21" y1="10" y2="10" />
+                </svg>
+                <span>{galleryInfo.date}</span>
+                <span className="text-gray-300">•</span>
+                <svg className="w-3.5 h-3.5 text-[#c8924b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>{galleryInfo.venue}</span>
+              </div>
+            </>
+          ) : (
+            /* MAIN GALLERY HERO SECTION */
+            <>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fbf4e8] border border-[#f5e4bf] text-[10px] font-bold tracking-widest text-[#af793e] uppercase shadow-2xs mb-4">
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg>
+                <span>&rarr; WEDDING &amp; EVENT GALLERIES</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight leading-tight max-w-2xl">
+                Capturing Moments. <br />
+                <span className="text-[#b78446]">Delivering Stories.</span>
+              </h1>
+
+              <p className="text-sm sm:text-base text-gray-600 max-w-xl leading-relaxed mt-3">
+                Browse through our curated collection of high-resolution wedding, portrait, and event photo galleries. Delivered with elegance, speed, and privacy.
+              </p>
+            </>
+          )}
 
           {/* 3 Stats Row */}
           <div className="flex flex-wrap items-center gap-5 sm:gap-8 mt-6">
@@ -185,38 +210,34 @@ const Gallery = () => {
                 </svg>
               </div>
               <div>
-                <span className="text-xl font-extrabold text-gray-900">{galleryInfo.totalPhotos}</span>
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Photos</p>
+                <span className="text-xl font-extrabold text-gray-900">{id ? galleryInfo.totalPhotos : '500+'}</span>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">{id ? 'Photos' : 'Galleries'}</p>
               </div>
             </div>
 
-            {/* Date */}
+            {/* Photos Delivered / Date */}
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 rounded-2xl bg-[#faf2e6] flex items-center justify-center text-[#c8924b]">
                 <svg className="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                  <line x1="16" x2="16" y1="2" y2="6" />
-                  <line x1="8" x2="8" y1="2" y2="6" />
-                  <line x1="3" x2="21" y1="10" y2="10" />
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
               </div>
               <div>
-                <span className="text-sm font-extrabold text-gray-900">20 Apr 2024</span>
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Date</p>
+                <span className="text-sm font-extrabold text-gray-900">{id ? galleryInfo.date : '50M+'}</span>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">{id ? 'Date' : 'Delivered'}</p>
               </div>
             </div>
 
-            {/* Venue */}
+            {/* HD Quality / Venue */}
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 rounded-2xl bg-[#faf2e6] flex items-center justify-center text-[#c8924b]">
                 <svg className="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </div>
               <div>
-                <span className="text-sm font-extrabold text-gray-900">The Grand Vista</span>
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Jaipur</p>
+                <span className="text-sm font-extrabold text-gray-900">{id ? galleryInfo.venue : '100% Ultra HD'}</span>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">{id ? 'Location' : 'Quality'}</p>
               </div>
             </div>
 
@@ -307,18 +328,6 @@ const Gallery = () => {
             </div>
 
           </div>
-
-          {/* Right: Share Gallery Button */}
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-[#e8cfa0] bg-white hover:bg-[#fdf9f2] text-[#af793e] text-xs font-bold transition-all cursor-pointer shadow-2xs">
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <circle cx="18" cy="5" r="3" />
-              <circle cx="6" cy="12" r="3" />
-              <circle cx="18" cy="19" r="3" />
-              <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
-              <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
-            </svg>
-            Share Gallery
-          </button>
 
         </div>
       </div>
