@@ -154,7 +154,7 @@ import { logo } from '../assets/assets'
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Pricing', href: '#pricing' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Testimonials', href: '#testimonials' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '#contact' },

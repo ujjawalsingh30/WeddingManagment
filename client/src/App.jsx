@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
+import Pricing from "./pages/Pricing";
 import AdminLogin from "./admin/common/AdminLogin";
 import AdminLayout from "./admin/common/AdminLayout";
 import Dashboard from "./admin/pages/Dashboard";
@@ -31,6 +32,7 @@ const App = () => {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/gallery/:id" element={<Gallery />} />
         </Route>
