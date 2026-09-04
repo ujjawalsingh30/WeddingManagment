@@ -9,7 +9,6 @@ const Pricing = () => {
     setOpenFaq(openFaq === index ? null : index)
   }
 
-  // Pricing multiplier for yearly (20% discount)
   const isYearly = billingCycle === 'yearly'
 
   const plans = [
@@ -126,29 +125,22 @@ const Pricing = () => {
   return (
     <div className="bg-[#faf8f5] text-gray-900 min-h-screen pb-20">
       
-      {/* ========================================================================= */}
       {/* 1. HERO SECTION & BILLING TOGGLE */}
-      {/* ========================================================================= */}
       <section className="pt-12 pb-16 sm:pt-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        
-        {/* Top Tag */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fdf8f0] border border-[#f5e6d0] shadow-2xs mb-4">
           <span className="text-[11px] font-bold tracking-widest text-[#b78446] uppercase">
             ✦ SIMPLE PRICING ✦
           </span>
         </div>
 
-        {/* Hero Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
           Plans for Every <span className="text-[#b78446]">Photographer</span>
         </h1>
 
-        {/* Subtitle */}
         <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
           Choose a plan that fits your needs. Upgrade or downgrade anytime.
         </p>
 
-        {/* Decorative Annotations */}
         <div className="hidden md:block absolute top-20 left-6 lg:left-12 text-left pointer-events-none transform -rotate-6">
           <span className="font-serif italic text-sm text-[#b78446] block">
             Start free.<br />No credit card required!
@@ -158,7 +150,6 @@ const Pricing = () => {
           </svg>
         </div>
 
-        {/* Billing Toggle (Monthly / Yearly) */}
         <div className="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-white border border-gray-200 shadow-sm">
           <button
             onClick={() => setBillingCycle('monthly')}
@@ -184,12 +175,9 @@ const Pricing = () => {
             </span>
           </button>
         </div>
-
       </section>
 
-      {/* ========================================================================= */}
       {/* 2. PRICING CARDS GRID */}
-      {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {plans.map((plan) => {
@@ -204,7 +192,6 @@ const Pricing = () => {
                     : 'bg-white border border-gray-200/90 shadow-md hover:shadow-xl'
                 }`}
               >
-                {/* Most Popular Badge */}
                 {plan.badge && (
                   <div className="bg-[#b78446] text-white text-[11px] font-extrabold uppercase tracking-widest text-center py-2 rounded-t-[2rem]">
                     {plan.badge}
@@ -213,13 +200,11 @@ const Pricing = () => {
 
                 <div className="p-7 sm:p-9 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Header */}
                     <h3 className="text-2xl font-extrabold text-gray-900">{plan.name}</h3>
                     <p className="text-xs sm:text-sm text-gray-500 mt-1 min-h-[40px]">
                       {plan.description}
                     </p>
 
-                    {/* Price */}
                     <div className="my-6 flex items-baseline gap-2">
                       <span className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight">
                         ₹{price.toLocaleString()}
@@ -229,7 +214,6 @@ const Pricing = () => {
                       </span>
                     </div>
 
-                    {/* Button */}
                     <Link
                       to={plan.buttonLink}
                       className={`w-full py-3.5 rounded-2xl font-bold text-xs sm:text-sm transition-all text-center block cursor-pointer mb-8 ${plan.buttonStyle}`}
@@ -237,7 +221,6 @@ const Pricing = () => {
                       {plan.buttonText}
                     </Link>
 
-                    {/* Feature List */}
                     <div className="space-y-3 pt-4 border-t border-gray-200/60">
                       {plan.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-gray-700">
@@ -250,19 +233,14 @@ const Pricing = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
             )
           })}
         </div>
       </section>
 
-      {/* ========================================================================= */}
       {/* 3. FEATURE COMPARISON TABLE */}
-      {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        
-        {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-[#b78446] uppercase mb-2">
             <span>&rarr; COMPARE FEATURES</span>
@@ -272,7 +250,6 @@ const Pricing = () => {
           </h2>
         </div>
 
-        {/* Table Wrapper */}
         <div className="bg-white rounded-3xl border border-gray-200/80 shadow-md overflow-hidden overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
@@ -287,8 +264,6 @@ const Pricing = () => {
               {comparisonData.map((row, idx) => (
                 <tr key={idx} className="hover:bg-gray-50/60 transition-colors">
                   <td className="py-4 px-6 font-semibold text-gray-900">{row.feature}</td>
-                  
-                  {/* Free */}
                   <td className="py-4 px-6 text-center text-gray-600">
                     {row.free === '✓' ? (
                       <svg className="w-4 h-4 text-emerald-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -298,8 +273,6 @@ const Pricing = () => {
                       row.free
                     )}
                   </td>
-
-                  {/* Pro */}
                   <td className="py-4 px-6 text-center font-bold text-gray-900 bg-[#fdf8f0]/60">
                     {row.pro === '✓' ? (
                       <svg className="w-4 h-4 text-emerald-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -309,8 +282,6 @@ const Pricing = () => {
                       row.pro
                     )}
                   </td>
-
-                  {/* Business */}
                   <td className="py-4 px-6 text-center text-gray-600">
                     {row.business === '✓' ? (
                       <svg className="w-4 h-4 text-emerald-600 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -325,15 +296,10 @@ const Pricing = () => {
             </tbody>
           </table>
         </div>
-
       </section>
 
-      {/* ========================================================================= */}
-      {/* 4. FREQUENTLY ASKED QUESTIONS (FAQ GRID) */}
-      {/* ========================================================================= */}
+      {/* 4. FREQUENTLY ASKED QUESTIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        
-        {/* Section Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-[#b78446] uppercase mb-2">
@@ -356,7 +322,6 @@ const Pricing = () => {
           </a>
         </div>
 
-        {/* FAQ Accordion Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {faqs.map((faq, index) => {
             const isOpen = openFaq === index
@@ -388,19 +353,13 @@ const Pricing = () => {
             )
           })}
         </div>
-
       </section>
 
-      {/* ========================================================================= */}
       {/* 5. BOTTOM CTA BANNER */}
-      {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#0c1017] rounded-[2.5rem] p-8 sm:p-12 text-white relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-          
-          {/* Ambient Glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Left Content */}
           <div className="flex items-center gap-5 relative z-10">
             <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-[#d4a373] shrink-0">
               <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -418,7 +377,6 @@ const Pricing = () => {
             </div>
           </div>
 
-          {/* Right Action */}
           <div className="text-center md:text-right relative z-10 shrink-0">
             <Link
               to="/admin/login"
@@ -429,7 +387,6 @@ const Pricing = () => {
             </Link>
             <p className="text-[11px] text-gray-400 mt-2">No credit card required</p>
           </div>
-
         </div>
       </section>
 
